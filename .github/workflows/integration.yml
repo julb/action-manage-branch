@@ -1,0 +1,36 @@
+name: Integration Test
+
+on: 
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "The branch name."
+        required: true
+      state:
+        description: "The expected branch state."
+        default: "present"
+        required: false
+      from:
+        description: "The source from which to create the branch."
+        required: false
+
+
+jobs:
+  manage-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test repository
+        id: manage_branch
+        uses: ./
+        with:
+          name:  ${{ github.event.inputs.name }}
+          state:  ${{ github.event.inputs.state }}
+          from:  ${{ github.event.inputs.from }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check outputs
+        run: |
+          test "${{ steps.manage_branch.outputs.name }}" != ""
+          test "${{ steps.manage_branch.outputs.ref }}" != ""
+          test "${{ steps.manage_branch.outputs.sha }}" != ""

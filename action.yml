@@ -1,0 +1,27 @@
+name: Manage branches
+description: "Manage the branches for a given repository"
+author: "julb"
+branding:
+  icon: git-branch
+  color: blue
+inputs:
+  name:
+    description: "The branch name."
+    required: true
+  state:
+    description: "The expected state of the branch."
+    default: "create"
+    required: false
+  from:
+    description: "The ref from which to create the branch (branch, tag, ref or sha)."
+    required: false
+outputs:
+  name:
+    description: "The branch name."
+  ref:
+    description: "The branch ref."
+  sha:
+    description: "The branch sha."
+runs:
+  using: "docker"
+  image: "Dockerfile"

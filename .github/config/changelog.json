@@ -1,0 +1,16 @@
+{
+    "categories": [
+      {
+        "title": "## 🚀 Features",
+        "labels": ["feature"]
+      },
+      {
+        "title": "## 🐛 Fixes",
+        "labels": ["bug"]
+      },
+      {
+        "title": "## 🧪 Documentations",
+        "labels": ["documentation"]
+      }
+    ]
+}
